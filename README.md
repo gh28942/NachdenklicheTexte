@@ -5,3 +5,5 @@ You can download the full program here: http://www.mediafire.com/file/kvk9he81a4
 
 See what the program can do here: https://youtu.be/juSsDbZcbm0
 
+![Nachdenkliche Texte](screenshot/ntmb-screenshot.jpg?raw=true "Nachdenkliche Texte")
+Screenshot of the program.
