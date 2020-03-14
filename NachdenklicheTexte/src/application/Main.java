@@ -63,10 +63,32 @@ public class Main extends Application {
 	private CheckBox translateBox;
 
 	public int probValue = 30;
+
+	//For the Windows installer - store data in the AppData Folder. Uncomment for use in the installer.
+	String windowsFilePath = "";//System.getenv("APPDATA") + "//GerH/NTMB/";
 	
 	int spruecheInitialSize = 0;
 	ArrayList<String> sprueche = new ArrayList<String>( 
             Arrays.asList(
+            "Nimm das Dasein als Bewährungsfrist ohne Klage, ohne Fragen. \nSchweigend steig hinauf die Treppen,\nweil es immerhin noch leichter ist,\nsein Kreuz zu tragen,\nals es zu schleppen.\nMascha Kaléko (1907-1975)", 
+            "Genial zu sein mag dem Genie gelingen,\nzum Snob jedoch kann es der Dümmste bringen.\nDer eine tut. Der andre tut als ob.\nSo unterscheidet sich der Mann vom Snob.\nMascha Kaléko (1907-1975)", 
+            "\"Bescheidenheit ist eine Zier, \ndoch weiter kommste ohne ihr.\"\nUnd bist du gar ein Sprachgenie,\nkommst du auch weiter ohne sie.\nMascha Kaléko (1907-1975)", 
+            "\"Bescheidenheit ist eine Zier.\"\nWem anderer Gaben Segen\nversagt geblieben ist, tut gut,\ndies eine Talent zu pflegen.\nMascha Kaléko (1907-1975)", 
+            "Freund, willst du wissen, was der Herr vom Wert des Geldes denkt:\nSieh dir die Kreaturen an, die er damit beschenkt.\nMascha Kaléko (1907-1975)", 
+            "Es ist durchaus nicht so, als wüßte ich nicht den Weg zu den güldenen Gärten.\nIch weiß sehr wohl, wie man reisen müßte.\nDoch schrecken mich die Reisegefährten.\nMascha Kaléko (1907-1975)", 
+            "Ich bin von Natur aus inkonsequent\nund ein Prinzipienreitertalent.\nSchließt das in letzter Konsequenz nicht ein \ndie Möglichkeit, auch konsequent zu sein?\nMascha Kaléko (1907-1975)", 
+            "Mit manchen Leuten lohnt es sich nicht zu leben.\nMit anderen wieder macht es keinen Spaß.\nAus lauter Angst, sich etwas zu vergeben,\nvergibt sich diese Sorte immer was.\nMascha Kaléko (1907-1975)", 
+            "Dass du am \"MI-KO\" leidest, klingt aus deinem Mund hoffärtig.\n- Du redest dir das gar nicht ein:\nDu bist halt minderwertig!\nMascha Kaléko (1907-1975)", 
+            "Vor allem blieb dir unvergessen\nErsehntes, das du nie besessen.\nDie schönste Frau und die lieblichste Landschaft\nverlieren bei allzunaher Bekanntschaft.\nMascha Kaléko (1907-1975)", 
+            "Eines lässt sich nicht bestreiten:\nJede Sache hat zwei Seiten.\n- Die der andern, das ist eine,\nund die richtige Seite: deine. \nMascha Kaléko (1907-1975)", 
+            "Jene Sehnsucht nach der alten Heimat ist (wer hätte das nicht schon erfahren!)\nnur ein Drittel Heimweh nach dem Lande\nund zwo Drittel nach vergangnen Jahren.\nMascha Kaléko (1907-1975)", 
+            "Wie sehr sich der Mensch auch bezwinge:\nEr liebt sich, und Liebe macht blind.\nMir scheint oft, wir sehen die Dinge,\nganz ehrlich gesagt: wie wir sind.\nMascha Kaléko (1907-1975)", 
+            "Es reitet, naht ein Millionär,\ndie Glorie des Goldes vor ihm her.\nSo sieht die Welt dem armen Mann \ndas Elend schon von weitem an. \nMascha Kaléko (1907-1975)", 
+            "Ein kluger Franzose hat einmal gesagt,\nman sei niemals glücklich auf Erden,\nman erinnre sich nur, es gewesen zu sein,\nund hoffe, es wieder zu werden.\nMascha Kaléko (1907-1975)", 
+            "Heutzutage muss man fest entschlossen\nmit beiden Beinen auf dem Boden stehen.\nZumal die meisten Zeitgenossen\nmit allen vieren drauf spazierengehen.\nMascha Kaléko (1907-1975)", 
+            "Wie schön ist es, allein zu sein!\nVorrausgesetzt natürlich, man \nhat einen, dem man sagen kann:\n\"Wie schön ist es, allein zu sein!\"\nMascha Kaléko (1907-1975)", 
+            "Das Glück ist arm an Phantasie.\nSein Repertoire ist ziemlich klein;\ndas Unglück aber - ein Genie!\nIhm fällt stets etwas Neues ein. \nMascha Kaléko (1907-1975)", 
+            "Ans Werk herangehn kann man von zwei Seiten.\nDas siehst du früher oder später ein.\nDie eine: Man beauftragt einen zweiten.\nDie andere: Man tut es gleich allein.\nMascha Kaléko (1907-1975)", 
 			"Ärgere dich nicht, wenn dir ein Vogel auf den Kopf kackt, sondern freu dich, dass Elefanten nicht fliegen können. ",
 			"Auch aus Steinen, die einem in den Weg gelegt werden, kann man Schönes bauen. \n Johann Wolfgang von Goethe (1749-1832)",
 			"Auch Wolkenkratzer haben mal als Keller angefangen. ",
@@ -2918,7 +2940,7 @@ public class Main extends Application {
 		BackgroundImgView.fitHeightProperty().bind(image.heightProperty());
 		BackgroundImgView.setImage(image);
 	}
-
+	
 	@FXML
 	public void zufaelligDrehen() {
 		textLabel.setRotate((new Random().nextInt(30 - (-30) + 1) + (-30)));
@@ -2928,7 +2950,7 @@ public class Main extends Application {
 	public void geradeDrehen() {
 		textLabel.setRotate(0);
 	}
-
+	
 	@FXML
 	public void bildAnAb() {
 		switchText("");
@@ -3020,7 +3042,7 @@ public class Main extends Application {
 
 		//create file with current datetime
 		String sdf = LocalDateTime.now().format(DateTimeFormatter.ofPattern("_yyyy-MM-dd_HH-mm-ss-SSS"));
-		File file = new File("screenshot" + sdf + ".png");
+		File file = new File(windowsFilePath + "screenshot" + sdf + ".png");
 
 		try {
 			ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
